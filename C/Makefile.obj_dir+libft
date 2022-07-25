@@ -1,0 +1,66 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile.obj_dir+libft                             :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tjensen <tjensen@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/10/27 22:03:08 by tjensen           #+#    #+#              #
+#    Updated: 2022/07/25 21:06:40 by tjensen          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME        := a.out
+
+CC          := cc
+CFLAGS      := -Wall -Wextra -Werror
+
+CPPFLAGS    := -I./libft/
+DEPFLAGS     = -MT $@ -MMD -MP -MF $(DDIR)/$*.d
+
+LDFLAGS     :=
+LDLIBS      := libft/libft.a
+
+VPATH       := ./ src/
+SRCS        := main.c
+
+ODIR        := obj
+OBJS        := $(SRCS:%.c=$(ODIR)/%.o)
+
+DDIR        := $(ODIR)/.deps
+DEPS        := $(SRCS:%.c=$(DDIR)/%.d)
+
+# **************************************************************************** #
+#   RULES                                                                      #
+# **************************************************************************** #
+
+.PHONY: all clean fclean re
+
+$(NAME): libft/libft.a $(OBJS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS)
+
+$(ODIR)/%.o: %.c $(DDIR)/%.d | $(ODIR) $(DDIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(DEPFLAGS) -c $< -o $@
+
+$(ODIR):
+	mkdir -p $@
+
+$(DDIR):
+	mkdir -p $@
+
+%.a:
+	$(MAKE) -C $(dir $@)
+
+all: $(NAME)
+
+clean:
+	$(MAKE) -C libft/ fclean
+	$(RM) -r $(DDIR) $(ODIR)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+$(DEPS):
+include $(wildcard $(DEPS))
