@@ -40,8 +40,9 @@ ifeq ($(shell uname -s), Linux)
 endif
 ```
 
-## Parallel compilation by make -j
+## Parallel compilation with make -j
 ```Makefile
+# It is recommended to use number of CPU cores for the num_of_processes
 make -j<num_of_processes>
 ```
 ```Makefile
