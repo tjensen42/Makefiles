@@ -36,7 +36,7 @@ DEPS        := # $(SRCS:%.c=$(DDIR)/%.d) get dep files from src files
 # **************************************************************************** #
 
 ifeq ($(shell uname -s), Linux)
-	CFLAGS += -D LINUX -Wno-unused-result
+	CFLAGS += -Wno-unused-result
 endif
 ```
 
