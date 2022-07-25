@@ -13,7 +13,7 @@ DEPFLAGS     = # Specific flags which convince the compiler to generate the depe
 LDFLAGS     := # Linker flags, path where to search for library: -L./libft
 LDLIBS      := # Library flags or names: -lm -lft
 
-VPATH       := # A list of directories to be searched for source files: ./src/
+VPATH       := # A list of directories to be searched for source files: ./src/ ./src/parser
 SRCS        := # specify all source files (*.c)
 
 ODIR        := # Dir for .o files (object files)
