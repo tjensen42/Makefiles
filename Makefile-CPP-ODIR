@@ -1,0 +1,58 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile-CPP-ODIR                                  :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tjensen <tjensen@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/10/27 22:03:08 by tjensen           #+#    #+#              #
+#    Updated: 2022/07/25 13:13:46 by tjensen          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME        := a.out
+
+CXX         := c++
+CXXFLAGS    := -Wall -Wextra -Werror -std=c++98
+DEPFLAGS     = -MT $@ -MMD -MP -MF $(DDIR)/$*.d
+
+LDFLAGS     :=
+
+VPATH       := ./
+SRCS        := main.cpp
+
+ODIR        := obj
+OBJS        := $(SRCS:%.cpp=$(ODIR)/%.o)
+
+DDIR        := $(ODIR)/.deps
+DEPS        := $(SRCS:%.cpp=$(DDIR)/%.d)
+
+# **************************************************************************** #
+#   RULES                                                                      #
+# **************************************************************************** #
+
+.PHONY: all clean fclean re
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $@ $(LDFLAGS)
+
+$(ODIR)/%.o: %.cpp | $(ODIR) $(DDIR)
+	$(CXX) $(CXXFLAGS) $(DEPFLAGS) -c $< -o $@
+
+$(ODIR):
+	mkdir -p $@
+
+$(DDIR):
+	mkdir -p $@
+
+all: $(NAME)
+
+clean:
+	$(RM) -r $(DDIR) $(ODIR)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+-include $(DEPS)

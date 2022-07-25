@@ -1,0 +1,48 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile-CPP                                       :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: tjensen <tjensen@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/10/27 22:03:08 by tjensen           #+#    #+#              #
+#    Updated: 2022/07/25 13:11:34 by tjensen          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME        := a.out
+
+CXX         := c++
+CXXFLAGS    := -Wall -Wextra -Werror -std=c++98
+DEPFLAGS     = -MMD -MP
+
+LDFLAGS     :=
+
+VPATH       := ./ src/
+SRCS        := main.cpp
+OBJS        := $(SRCS:%.cpp=%.o)
+DEPS        := $(SRCS:%.cpp=%.d)
+
+# **************************************************************************** #
+#   RULES                                                                      #
+# **************************************************************************** #
+
+.PHONY: all clean fclean re
+
+$(NAME): $(OBJS)
+	$(CXX) $(CXXFLAGS) $(OBJS) -o $@ $(LDFLAGS)
+
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) $(DEPFLAGS) -c $< -o $@
+
+all: $(NAME)
+
+clean:
+	$(RM) $(OBJS) $(DEPS)
+
+fclean: clean
+	$(RM) $(NAME)
+
+re: fclean all
+
+-include $(DEPS)
