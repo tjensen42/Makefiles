@@ -1,5 +1,28 @@
 # Makefile templates
 
+## Variables
+```
+NAME        := #Executable name
+
+CC          := cc
+CFLAGS      := -Wall -Wextra -Werror
+
+CPPFLAGS    := -I./libft/
+DEPFLAGS     = -MT $@ -MMD -MP -MF $(DDIR)/$*.d
+
+LDFLAGS     :=
+LDLIBS      := libft/libft.a
+
+VPATH       := ./ src/
+SRCS        := main.c
+
+ODIR        := obj
+OBJS        := $(SRCS:%.c=$(ODIR)/%.o)
+
+DDIR        := $(ODIR)/.deps
+DEPS        := $(SRCS:%.c=$(DDIR)/%.d)
+
+
 ## Auto dependency generation 
 * https://make.mad-scientist.net/papers/advanced-auto-dependency-generation/<br>(dependency flags explained at the bottom of the page)
 
