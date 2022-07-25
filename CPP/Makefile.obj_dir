@@ -6,7 +6,7 @@
 #    By: tjensen <tjensen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 22:03:08 by tjensen           #+#    #+#              #
-#    Updated: 2022/07/25 14:12:09 by tjensen          ###   ########.fr        #
+#    Updated: 2022/07/25 14:17:06 by tjensen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ DEPS        := $(SRCS:%.cpp=$(DDIR)/%.d)
 $(NAME): $(OBJS)
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS)
 
-$(ODIR)/%.o: %.cpp | $(ODIR) $(DDIR)
+$(ODIR)/%.o: %.cpp $(DDIR)/%.d | $(ODIR) $(DDIR)
 	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(DEPFLAGS) -c $< -o $@
 
 $(ODIR):
