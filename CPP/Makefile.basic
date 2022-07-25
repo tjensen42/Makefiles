@@ -6,7 +6,7 @@
 #    By: tjensen <tjensen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 22:03:08 by tjensen           #+#    #+#              #
-#    Updated: 2022/07/25 14:17:19 by tjensen          ###   ########.fr        #
+#    Updated: 2022/07/25 16:46:07 by tjensen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,4 +46,5 @@ fclean: clean
 
 re: fclean all
 
+$(DEPS):
 include $(wildcard $(DEPS))

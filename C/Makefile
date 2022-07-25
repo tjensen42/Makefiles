@@ -1,19 +1,19 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile.obj_dir                                   :+:      :+:    :+:    #
+#    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tjensen <tjensen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 22:03:08 by tjensen           #+#    #+#              #
-#    Updated: 2022/07/25 16:46:03 by tjensen          ###   ########.fr        #
+#    Updated: 2022/07/25 16:38:11 by tjensen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME        := a.out
 
-CXX         := c++
-CXXFLAGS    := -Wall -Wextra -Werror -std=c++98
+CC          := cc
+CFLAGS      := -Wall -Wextra -Werror
 
 CPPFLAGS    :=
 DEPFLAGS     = -MT $@ -MMD -MP -MF $(DDIR)/$*.d
@@ -22,13 +22,13 @@ LDFLAGS     :=
 LDLIBS      :=
 
 VPATH       := ./ src/
-SRCS        := main.cpp
+SRCS        := main.c
 
 ODIR        := obj
-OBJS        := $(SRCS:%.cpp=$(ODIR)/%.o)
+OBJS        := $(SRCS:%.c=$(ODIR)/%.o)
 
 DDIR        := $(ODIR)/.deps
-DEPS        := $(SRCS:%.cpp=$(DDIR)/%.d)
+DEPS        := $(SRCS:%.c=$(DDIR)/%.d)
 
 # **************************************************************************** #
 #   RULES                                                                      #
@@ -37,10 +37,10 @@ DEPS        := $(SRCS:%.cpp=$(DDIR)/%.d)
 .PHONY: all clean fclean re
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS)
 
-$(ODIR)/%.o: %.cpp $(DDIR)/%.d | $(ODIR) $(DDIR)
-	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(DEPFLAGS) -c $< -o $@
+$(ODIR)/%.o: %.c $(DDIR)/%.d | $(ODIR) $(DDIR)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(DEPFLAGS) -c $< -o $@
 
 $(ODIR):
 	mkdir -p $@
@@ -58,5 +58,4 @@ fclean: clean
 
 re: fclean all
 
-$(DEPS):
 include $(wildcard $(DEPS))
