@@ -1,6 +1,6 @@
 # Makefile templates
 
-## Useful resources
+## Auto dependency generation 
 * https://make.mad-scientist.net/papers/advanced-auto-dependency-generation/<br>(dependency flags explained at the bottom of the page)
 
 ## Linux warn_unused_result fix
@@ -14,5 +14,6 @@
 ifeq ($(shell uname -s), Linux)
 	CFLAGS += -D LINUX -Wno-unused-result
 endif
+```
 
 
