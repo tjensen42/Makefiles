@@ -40,4 +40,23 @@ ifeq ($(shell uname -s), Linux)
 endif
 ```
 
+## Parallel compilation by make -j
+```Makefile
+make -j<num_of_processes>
+```
+```Makefile
+UNAME	:= $(shell uname -s)
+NUMPROC	:= 8
+
+ifeq ($(UNAME), Linux)
+	NUMPROC := $(shell grep -c ^processor /proc/cpuinfo)
+else ifeq ($(UNAME), Darwin)
+	NUMPROC := $(shell sysctl -n hw.ncpu)
+endif
+
+all:
+	@$(MAKE) $(NAME) -j$(NUMPROC)
+```
+
+
 
