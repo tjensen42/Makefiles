@@ -22,6 +22,9 @@ OBJS        := $(SRCS:%.c=$(ODIR)/%.o)
 DDIR        := $(ODIR)/.deps
 DEPS        := $(SRCS:%.c=$(DDIR)/%.d)
 
+```
+
+
 
 ## Auto dependency generation 
 * https://make.mad-scientist.net/papers/advanced-auto-dependency-generation/<br>(dependency flags explained at the bottom of the page)
