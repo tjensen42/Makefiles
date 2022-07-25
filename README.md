@@ -1,8 +1,8 @@
 # Makefile templates
 
 ## Variables
-```
-NAME        := #Executable name
+```bash
+NAME        := # Executable name
 
 CC          := cc
 CFLAGS      := -Wall -Wextra -Werror
