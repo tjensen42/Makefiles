@@ -46,6 +46,7 @@ endif
 make -j<num_of_processes>
 ```
 ```Makefile
+# Makefile builtin approach
 UNAME	:= $(shell uname -s)
 NUMPROC	:= 8
 
