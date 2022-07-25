@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile-C                                         :+:      :+:    :+:    #
+#    Makefile.basic                                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tjensen <tjensen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 22:03:08 by tjensen           #+#    #+#              #
-#    Updated: 2022/07/25 13:11:32 by tjensen          ###   ########.fr        #
+#    Updated: 2022/07/25 13:54:56 by tjensen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CFLAGS      := -Wall -Wextra -Werror
 DEPFLAGS     = -MMD -MP
 
 LDFLAGS     :=
+LDLIBS      :=
 
 VPATH       := ./ src/
 SRCS        := main.c
@@ -30,10 +31,10 @@ DEPS        := $(SRCS:%.c=%.d)
 .PHONY: all clean fclean re
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(DEPFLAGS) -c $< -o $@
 
 all: $(NAME)
 

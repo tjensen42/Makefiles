@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile-CPP                                       :+:      :+:    :+:    #
+#    Makefile.basic                                     :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: tjensen <tjensen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 22:03:08 by tjensen           #+#    #+#              #
-#    Updated: 2022/07/25 13:11:34 by tjensen          ###   ########.fr        #
+#    Updated: 2022/07/25 13:54:46 by tjensen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ CXXFLAGS    := -Wall -Wextra -Werror -std=c++98
 DEPFLAGS     = -MMD -MP
 
 LDFLAGS     :=
+LDLIBS      :=
 
 VPATH       := ./ src/
 SRCS        := main.cpp
@@ -30,10 +31,10 @@ DEPS        := $(SRCS:%.cpp=%.d)
 .PHONY: all clean fclean re
 
 $(NAME): $(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -o $@ $(LDFLAGS)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS)
 
 %.o: %.cpp
-	$(CXX) $(CXXFLAGS) $(DEPFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(CPPFLAGS) $(DEPFLAGS) -c $< -o $@
 
 all: $(NAME)
 

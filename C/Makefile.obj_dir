@@ -6,7 +6,7 @@
 #    By: tjensen <tjensen@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/27 22:03:08 by tjensen           #+#    #+#              #
-#    Updated: 2022/07/25 13:26:31 by tjensen          ###   ########.fr        #
+#    Updated: 2022/07/25 13:54:15 by tjensen          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,12 @@ NAME        := a.out
 
 CC          := cc
 CFLAGS      := -Wall -Wextra -Werror
+
+CPPFLAGS    :=
 DEPFLAGS     = -MT $@ -MMD -MP -MF $(DDIR)/$*.d
 
 LDFLAGS     :=
+LDLIBS      :=
 
 VPATH       := ./ src/
 SRCS        := main.c
@@ -34,10 +37,10 @@ DEPS        := $(SRCS:%.c=$(DDIR)/%.d)
 .PHONY: all clean fclean re
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $(OBJS) -o $@ $(LDFLAGS)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) -o $@ $(LDLIBS)
 
 $(ODIR)/%.o: %.c | $(ODIR) $(DDIR)
-	$(CC) $(CFLAGS) $(DEPFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(DEPFLAGS) -c $< -o $@
 
 $(ODIR):
 	mkdir -p $@
