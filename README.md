@@ -4,27 +4,25 @@
 ```bash
 NAME        := # Executable name
 
-CC          := cc
-CFLAGS      := -Wall -Wextra -Werror
+CC          := # Program for compiling C programs; default ‘cc’
+CFLAGS      := # Extra flags to give to the C compiler
 
-CPPFLAGS    := -I./libft/
-DEPFLAGS     = -MT $@ -MMD -MP -MF $(DDIR)/$*.d
+CPPFLAGS    := # Extra flags to give to the C preprocessor and programs that use it
+DEPFLAGS     = # Specific flags which convince the compiler to generate the dependency file
 
-LDFLAGS     :=
-LDLIBS      := libft/libft.a
+LDFLAGS     := # Linker flags, path where to search for library: -L./libft
+LDLIBS      := # Library flags or names: -lm -lft
 
-VPATH       := ./ src/
-SRCS        := main.c
+VPATH       := # A list of directories to be searched for source files: ./src/
+SRCS        := # specify all source files (*.c)
 
-ODIR        := obj
-OBJS        := $(SRCS:%.c=$(ODIR)/%.o)
+ODIR        := # Dir for .o files (object files)
+OBJS        := # $(SRCS:%.c=$(ODIR)/%.o) get object files from src files
 
-DDIR        := $(ODIR)/.deps
-DEPS        := $(SRCS:%.c=$(DDIR)/%.d)
+DDIR        := # Dir for .d files (dependency files)
+DEPS        := # $(SRCS:%.c=$(DDIR)/%.d) get dep files from src files
 
 ```
-
-
 
 ## Auto dependency generation 
 * https://make.mad-scientist.net/papers/advanced-auto-dependency-generation/<br>(dependency flags explained at the bottom of the page)
