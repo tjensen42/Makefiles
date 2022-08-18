@@ -7,6 +7,9 @@ NAME        := # Executable name
 CC          := # Program for compiling C programs; default ‘cc’
 CFLAGS      := # Extra flags to give to the C compiler
 
+CXX         := # Program for compiling C++ programs
+CXXFLAGS    := # Extra flags to give to the C++ compiler
+
 CPPFLAGS    := # Extra flags to give to the C preprocessor and programs that use it
 DEPFLAGS     = # Specific flags which convince the compiler to generate the dependency file
 
