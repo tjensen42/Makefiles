@@ -45,9 +45,6 @@ DEPS        := # $(SRCS:%.c=$(DDIR)/%.d) get dep files from src files
 # Write the generated dependency file $(DEPDIR)/$*.d.
 -MF $(DEPDIR)/$*.d
 
-# Delete the built-in rules for building object files from .c files, so that our rule is used instead.
-%.o : %.c
-
 # Declare the generated dependency file as a prerequisite of the target, so that if it’s missing the target will be rebuilt. 
 ... $(DEPDIR)/%.d
 
