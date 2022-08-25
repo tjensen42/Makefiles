@@ -1,7 +1,7 @@
 # Makefile templates
 
 ## Variables
-```make
+```Makefile
 NAME        := # Executable name
 
 CC          := # Program for compiling C programs; default ‘cc’
@@ -32,7 +32,7 @@ DEPS        := # $(SRCS:%.c=$(DDIR)/%.d) get dep files from src files
 
 ### Overview:
 
-```make
+```Makefile
 # Set the name of the target in the generated dependency file.
 -MT $@
 
@@ -78,7 +78,7 @@ endif
 ```
 
 ## Parallel compilation with make -j
-```Makefile
+```bash
 # It is recommended to use number of CPU cores for the num_of_processes
 make -j<num_of_processes>
 ```
