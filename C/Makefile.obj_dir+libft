@@ -63,4 +63,4 @@ fclean: clean
 re: fclean all
 
 $(DEPS):
-include $(wildcard $(DEPS))
+-include $(DEPS)
