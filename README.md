@@ -30,7 +30,7 @@ DEPS        := # $(SRCS:%.c=$(DDIR)/%.d) get dep files from src files
 ## Auto dependency generation 
 * https://make.mad-scientist.net/papers/advanced-auto-dependency-generation/<br>(dependency flags explained at the bottom of the page)
 
-### Explained:
+### Overview:
 
 ```make
 # Set the name of the target in the generated dependency file.
