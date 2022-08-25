@@ -55,8 +55,7 @@ DEPS        := # $(SRCS:%.c=$(DDIR)/%.d) get dep files from src files
 ... | $(DEPDIR)
 
 # Declare a rule for creating the dependency directory if it doesn’t exist:
-$(DEPDIR):
-	@mkdir -p $@
+$(DEPDIR): ; @mkdir -p $@
 
 # Generate a list of all the dependency files that could exist.
 DEPFILES := ...
