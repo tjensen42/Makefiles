@@ -45,6 +45,9 @@ DEPS        := # $(SRCS:%.c=$(DDIR)/%.d) get dep files from src files
 # Write the generated dependency file $(DEPDIR)/$*.d.
 -MF $(DEPDIR)/$*.d
 
+# Generate list of dependency files
+DEPS := $(SRCS:%.c=$(DEPDIR)/%.d)
+
 # Declare the generated dependency file as a prerequisite of the target, so that if it’s missing the target will be rebuilt. 
 ... $(DEPDIR)/%.d
 
@@ -53,9 +56,6 @@ DEPS        := # $(SRCS:%.c=$(DDIR)/%.d) get dep files from src files
 
 # Declare a rule for creating the dependency directory if it doesn’t exist:
 $(DEPDIR): ; @mkdir -p $@
-
-# Generate a list of all the dependency files that could exist.
-DEPFILES := ...
 
 # Mention each dependency file as a target, so that make won’t fail if the file doesn’t exist.
 $(DEPFILES):
